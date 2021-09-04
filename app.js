@@ -1,10 +1,20 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv/config')
 
 const port = process.env.PORT;
-
+const corsOptions = {
+  origin: '*',
+  methods:'*',
+  allowedHeaders:[
+    'Content-Type',
+    'Authorization',
+    'index'
+  ]
+}
+app.use(cors(corsOptions))
 require('./models/index')
 require('./routes/index')(app)
 
