@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv/config')
 
-const port = process.env.PORT;
+const port = process.env.PORT||5000;
+const dbName="test";
 const corsOpts = {
   origin: '*',
   methods:'*',
@@ -18,7 +19,7 @@ app.use(cors(corsOpts))
 require('./models/index')
 require('./routes/index')(app)
 
-mongoose.connect(process.env.URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true, useCreateIndex: true });
+mongoose.connect(process.env.URI||`mongodb://localhost:27017/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {

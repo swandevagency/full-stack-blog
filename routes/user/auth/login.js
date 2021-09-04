@@ -1,25 +1,23 @@
-const express = require('express')
-const router = express.Router()
-const globalController = require('../../../controllers/index')
+require('../../../controllers/index')
 
 router.put('/', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
-        globalController.messageComponent.emptyEmailOrPassword(res)
+        messageComponent.emptyEmailOrPassword(res)
     }
-    const user = await globalController.userComponent.findEmail(email)
+    const user = await userComponent.findEmail(email)
     if (!user) {
-        globalController.messageComponent.userNotExist(res)
+        messageComponent.userNotExist(res)
     }
-    const doMatch = await globalController.userComponent.passwordCheck(password,user.password)
+    const doMatch = await userComponent.passwordCheck(password,user.password)
     if (!doMatch) {
-        globalController.messageComponent.passwordMismatch(res)
+        messageComponent.passwordMismatch(res)
     }
     if (!user.is2faEnable) {
-        await globalController.userComponent.createMainToken(user,res)
+        await userComponent.createMainToken(user,res)
     } else {
         //2fa step
-        await globalController.userComponent.createOtpToken(user,res)
+        await userComponent.createOtpToken(user,res)
     }
 })
 

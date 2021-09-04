@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path=require('path')
-
+require('../controllers/index')
 module.exports = (app) => {
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
