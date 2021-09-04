@@ -136,18 +136,19 @@ export default {
         lastName,
         email,
         userName,
-        password
+        password,
       }
-      this.$axios.post('/user/signup', data).then((res)=>{
-        if(res.status === 200){
-          console.log(res);
-        }
-      }).catch((e) => {
-        console.log(e);
+      console.log(this.error);
+      this.$axios.post('/user/signup', data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log('bad luck');
+        console.log(e)
       })
     },
   },
-  
 }
 </script>
 
