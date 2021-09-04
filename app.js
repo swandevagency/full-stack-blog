@@ -5,7 +5,7 @@ const cors = require('cors')
 require('dotenv/config')
 
 const port = process.env.PORT;
-const corsOptions = {
+const corsOpts = {
   origin: '*',
   methods:'*',
   allowedHeaders:[
@@ -14,7 +14,7 @@ const corsOptions = {
     'index'
   ]
 }
-app.use(cors(corsOptions))
+app.use(cors(corsOpts))
 require('./models/index')
 require('./routes/index')(app)
 
