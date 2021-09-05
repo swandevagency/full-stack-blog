@@ -12,7 +12,7 @@ router.get('/:id', verify, async (req, res) => {
 router.post('/create', verify, (req, res) => {
   fileComponent.uploadImage(req, res, async (error) => {
     if (error) { //instanceof multer.MulterError
-      errorComponent.fileSize(error)
+      errorComponent.fileSize(error,res)
     } else {
       errorComponent.fileExist(req)
     }

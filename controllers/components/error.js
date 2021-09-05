@@ -1,4 +1,4 @@
-const fileSize = (error) => {
+const fileSize = (error,res) => {
     if (error.code == 'LIMIT_FILE_SIZE') {
         error.message = 'File Size is too large. Allowed file size is 1MB';
         error.success = false;
