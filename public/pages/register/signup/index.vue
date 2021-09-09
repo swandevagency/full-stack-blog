@@ -138,15 +138,16 @@ export default {
         userName,
         password,
       }
-      console.log(this.error);
-      this.$axios.post('/user/signup', data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log('bad luck');
-        console.log(e)
-      })
+      this.$axios
+        .post('/user/signup', data)
+        .then((res) => {
+          if (res.status === 200) {
+            this.$router.push('/register/login')
+          }
+        })
+        .catch((e) => {
+          console.log(e)
+        })
     },
   },
 }
@@ -233,6 +234,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.65);
   border-radius: 4px;
   width: 97%;
+  margin-bottom: 10px;
 }
 .checkbox {
   margin-top: 10px;
@@ -266,11 +268,12 @@ export default {
   color: red;
   font-size: 12px;
 }
-/*#submit{
+#submit {
+  border: solid 1px #fff;
   background-color: #47494e;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
+  border-radius: 4px;
+  font-size: 18px;
   color: #fff;
-}*/
+  padding: 10px 55px;
+}
 </style>
