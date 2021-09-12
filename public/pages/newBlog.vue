@@ -83,7 +83,7 @@ export default {
       formData.append('image', this.$refs.file.files[0]);
       formData.append('title', title);
       formData.append('description', description);
-      const headers = {authorization: `Bearer ${localStorage.getItem('authToken')}`,"Content-Type": "multipart/form-data"};
+      const headers = {authorization: `Bearer ${localStorage.getItem('authToken')}`,"Content-Type": "form-data"};
       this.$axios
         .post('/user/blog/create', formData, {headers})
         .then((res) => {

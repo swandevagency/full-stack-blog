@@ -50,7 +50,7 @@
           <h1>Topix Blogs</h1>
         </header>
         <div class="blogs">
-          
+          {{this.blogs}}
         </div>
       </section>
     </div>
@@ -66,8 +66,9 @@ export default {
   },
   async created() {
     try {
-      const res = await this.$axios.get('/user/blog')
-      console.log(res.data)
+      const headers = {authorization: `Bearer ${localStorage.getItem('authToken')}`,"Content-Type": "form-data"};
+      const res = await this.$axios.get('/user/blog',{headers})
+      console.log(res)
     } catch (e) {
       console.log(e)
     }

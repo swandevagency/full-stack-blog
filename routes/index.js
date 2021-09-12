@@ -12,6 +12,6 @@ module.exports = (app) => {
     app.use('/user/signup', require('./user/auth/signup'));
     app.use('/user/login', require('./user/auth/login'));
     app.use('/user/me/enable2fa', require('./user/auth/secondLogin'));
-    app.use('/user/me', require('./user/profile'));
     app.use('/user/blog', require('./user/blog'));
+    app.use('/user/me', require('./user/profile'));
 }
