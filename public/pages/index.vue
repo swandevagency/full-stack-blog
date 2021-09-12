@@ -20,26 +20,37 @@
             <p>David Wayne</p>
           </div>
           <div class="edit-profile">
-            <p>Edit profile</p>
+            <NuxtLink to="/editProfile">Edit profile</NuxtLink>
           </div>
         </div>
         <div class="editing-blog-wrapper">
-          <p>Blog editing</p>
-          <div class="creatin-new-blog">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="24px"
-              viewBox="0 0 24 24"
-              width="24px"
-              fill="#fff"
-            >
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"
-              />
-            </svg>
-            <p>Create new blog</p>
+          <p class="blog-editing">Blog editing</p>
+          <div class="creating-new-blog">
+            <NuxtLink to="/newBlog">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 0 24 24"
+                width="24px"
+                fill="#32555f"
+              >
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                  d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"
+                />
+              </svg>
+              <p>Create new blog</p>
+            </NuxtLink>
           </div>
+        </div>
+      </section>
+      <section class="blogs-wrapper">
+        <header class="welcome">
+          <p>Welcome to</p>
+          <h1>Topix Blogs</h1>
+        </header>
+        <div class="blogs">
+          
         </div>
       </section>
     </div>
@@ -48,6 +59,19 @@
 
 <script>
 export default {
+  data() {
+    return{
+      blogs:[]
+    }
+  },
+  async created() {
+    try {
+      const res = await this.$axios.get('/user/blog')
+      console.log(res.data)
+    } catch (e) {
+      console.log(e)
+    }
+  },
   mounted() {
     if (!localStorage.getItem('authToken')) {
       this.$router.push('/register')
@@ -59,12 +83,13 @@ export default {
 <style scoped>
 .page-wrapper {
   background-image: url('/irina-iriser-Vn7LOc5PE-E-unsplash.jpg');
+  display: flex;
   height: 100vh;
   background-position: center;
   background-size: cover;
   font-family: 'Poppins', sans-serif;
 }
-.menu-wrapper{
+.menu-wrapper {
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(30px);
@@ -72,32 +97,93 @@ export default {
   height: 100%;
   align-items: center;
 }
-.menu-wrapper h1{
+.menu-wrapper h1 {
   margin-top: 20px;
   color: white;
   font-size: 2em;
   font-weight: 300;
   font-style: italic;
 }
-.user-wrapper{
+.user-wrapper {
   margin-top: 10px;
   padding: 20px;
   background-color: rgb(255 255 255 / 65%);
   border: 1px solid white;
   border-radius: 4px;
 }
-.username{
+.username {
   display: flex;
   flex-direction: row;
   font-size: 1.3em;
   font-weight: 500;
   align-items: center;
+  justify-content: center;
 }
-.username p{
+.username p {
   color: #32555f;
 }
-.edit-profile{
-  margin:10px;
+.edit-profile {
+  margin: 10px;
+}
+.edit-profile a {
+  display: flex;
+  border: solid 1px rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 5px 70px;
+  background-color: rgba(255, 255, 255, 0.65);
+  color: #32555f;
+  font-size: 0.8em;
+}
+.editing-blog-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  padding: 10px 40px;
+  background-color: rgb(255 255 255 / 65%);
+  border: 1px solid white;
+  border-radius: 4px;
+}
+.blog-editing {
+  border-bottom: 1px solid white;
+  padding: 0px 30px 2px 30px;
+  font-size: 1.3em;
+  color: #32555f;
+  font-weight: 500;
+}
+.creating-new-blog {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  border: 1px solid white;
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 4px;
+}
+.creating-new-blog a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 0.8em;
+  color: #32555f;
+}
+.creating-new-blog a p {
+  padding: 5px 30px;
+}
+.blogs-wrapper {
+  margin-left: 15px;
+  margin-top: 50px;
+}
+.welcome p {
+  color: white;
+  font-size: 1.2em;
+  font-weight: 100;
+}
+.welcome h1 {
+  color: white;
+  font-size: 3em;
 }
 </style>
 >
