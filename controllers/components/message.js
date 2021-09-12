@@ -10,7 +10,9 @@ const deleteBlog = (res) => {
     })
 }
 const showBlog = (res, blog) => {
-    res.status(200).send(blog)
+    res.status(200).json({
+        blog
+    })
 }
 const emptyField = (res) => {
     console.log('user entry is not correct!');

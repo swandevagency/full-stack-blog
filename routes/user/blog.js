@@ -10,6 +10,7 @@ router.get('/:id', verify, async (req, res) => {
 })
 
 router.post('/create', verify, (req, res) => {
+  console.log(req.files);
   fileComponent.uploadImage(req, res, async (error) => {
     if (error) { //instanceof multer.MulterError
       errorComponent.fileSize(error,res)
